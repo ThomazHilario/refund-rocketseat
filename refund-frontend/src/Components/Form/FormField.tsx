@@ -1,5 +1,6 @@
 import { Controller, useFormContext, type FieldPath, type FieldValues } from "react-hook-form"
 import { cn } from "../../utils"
+import { FormFieldMessageError } from "./FormFieldMessageError";
 
 type FormFieldProps<TFieldValues extends FieldValues> = {
     id: string;
@@ -10,11 +11,10 @@ type FormFieldProps<TFieldValues extends FieldValues> = {
 }
 
 export const FormField = <TFieldValues extends FieldValues>({ name, className, id, label, placeholder }: FormFieldProps<TFieldValues>) => {
-    const { control } = useFormContext<TFieldValues>()
-
+    const { control, formState: {errors} } = useFormContext<TFieldValues>()
+    console.log(errors[name]?.message)
     return (
         <label className={cn(className)} htmlFor={id}>
-
             <span className="mb-2 block text-xs font-medium text-gray-700">
                 {label}
             </span>
@@ -34,6 +34,8 @@ export const FormField = <TFieldValues extends FieldValues>({ name, className, i
                 name={name}
                 control={control}
             />
+
+            <FormFieldMessageError nameField={name} />
         </label>
     )
 }

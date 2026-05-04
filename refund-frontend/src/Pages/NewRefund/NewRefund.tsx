@@ -5,12 +5,22 @@ import { zodResolver } from "@hookform/resolvers/zod"
 
 const schema = z.object({
     title: z.string().min(1, "O título é obrigatório"),
+    category: z.string().min(1, "A categoria é obrigatória"),
+    value: z.number().min(0.01, "O valor deve ser maior que zero"),
+    receipt: z.string().min(1, "O comprovante é obrigatório")
 })
+
+const defaultValues = {
+    title: "",
+    category: "",
+    value: 0,
+    receipt: ""
+}
 
 type RefundFormTypes = z.infer<typeof schema>
 
 export const NewRefund = () => {
-    const form = useForm<RefundFormTypes>({ resolver: zodResolver(schema) })
+    const form = useForm<RefundFormTypes>({ resolver: zodResolver(schema), defaultValues })
 
     const handleSubmit = (data: RefundFormTypes) => {
         console.log(data)
@@ -33,21 +43,21 @@ export const NewRefund = () => {
                     <FormField 
                         id="testField1" 
                         label="CATEGORIA" 
-                        name="teste" 
+                        name="category" 
                     />
 
                     <FormField 
                         className="flex-1" 
                         id="testField2" 
                         label="VALOR" 
-                        name="teste 2" 
+                        name="value" 
                     />
                 </div>
 
                 <FormField 
                     id="testField3" 
                     label="COMPROVANTE"
-                    name="teste5" 
+                    name="receipt" 
                 />
 
                 <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded-md mt-4">
