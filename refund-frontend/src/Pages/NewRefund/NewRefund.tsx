@@ -1,21 +1,44 @@
 import { useForm } from "react-hook-form"
-import { Form, FormField } from "../../Components"
+import { Form, FormField, FormFieldSelect } from "../../Components"
 import z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 
 const schema = z.object({
     title: z.string().min(1, "O título é obrigatório"),
     category: z.string().min(1, "A categoria é obrigatória"),
-    value: z.number().min(0.01, "O valor deve ser maior que zero"),
+    value: z.string().min(0.01, "O valor deve ser maior que zero"),
     receipt: z.string().min(1, "O comprovante é obrigatório")
 })
 
 const defaultValues = {
     title: "",
     category: "",
-    value: 0,
+    value: "",
     receipt: ""
 }
+
+const options = [
+    {
+        label: 'Alimentação',
+        value: 'food'
+    }, 
+    {
+        label: 'Hospedagem',
+        value: 'hosting'
+    },
+    {
+        label: 'Transporte',
+        value: 'transport'
+    },
+    {
+        label: 'Serviços',
+        value: 'services'
+    },
+    {
+        label: 'Outros',
+        value:'other'
+    }
+]
 
 type RefundFormTypes = z.infer<typeof schema>
 
@@ -27,7 +50,7 @@ export const NewRefund = () => {
     }
     
     return(
-        <div className="bg-[#F9FBFA] h-122.5 w-lg rounded-md p-10">
+        <div className="bg-[#F9FBFA] min-h-122.5 w-lg rounded-md p-10">
             <h2 className="text-xl font-semibold">
                 Nova solicitação de reembolso
             </h2>
@@ -40,10 +63,12 @@ export const NewRefund = () => {
                 />
 
                 <div className="flex gap-3">
-                    <FormField 
+                    <FormFieldSelect 
+                        className="flex-2"
                         id="testField1" 
                         label="CATEGORIA" 
                         name="category" 
+                        options={options}
                     />
 
                     <FormField 
@@ -51,6 +76,7 @@ export const NewRefund = () => {
                         id="testField2" 
                         label="VALOR" 
                         name="value" 
+                        type="number"
                     />
                 </div>
 

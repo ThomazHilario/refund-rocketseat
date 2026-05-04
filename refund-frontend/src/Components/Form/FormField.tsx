@@ -8,11 +8,19 @@ type FormFieldProps<TFieldValues extends FieldValues> = {
     label: string;
     name: FieldPath<TFieldValues>;
     placeholder?: string;
+    type?: string;
 }
 
-export const FormField = <TFieldValues extends FieldValues>({ name, className, id, label, placeholder }: FormFieldProps<TFieldValues>) => {
-    const { control, formState: {errors} } = useFormContext<TFieldValues>()
-    console.log(errors[name]?.message)
+export const FormField = <TFieldValues extends FieldValues>({ 
+    name, 
+    className, 
+    id, 
+    label, 
+    placeholder, 
+    type = "text" 
+}: FormFieldProps<TFieldValues>) => {
+    const { control } = useFormContext<TFieldValues>()
+
     return (
         <label className={cn(className)} htmlFor={id}>
             <span className="mb-2 block text-xs font-medium text-gray-700">
@@ -29,6 +37,7 @@ export const FormField = <TFieldValues extends FieldValues>({ name, className, i
                         onChange={onChange}
                         onBlur={onBlur}
                         name={name}
+                        type={type}
                     />
                 )}
                 name={name}
