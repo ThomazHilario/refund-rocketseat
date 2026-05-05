@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form"
-import { Form, FormField, FormFieldSelect } from "../../Components"
+import { Form, FormField, FormFieldSelect, FormFieldUploadFile } from "../../Components"
 import z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 
@@ -7,14 +7,13 @@ const schema = z.object({
     title: z.string().min(1, "O título é obrigatório"),
     category: z.string().min(1, "A categoria é obrigatória"),
     value: z.string().min(0.01, "O valor deve ser maior que zero"),
-    receipt: z.string().min(1, "O comprovante é obrigatório")
+    receipt: z.file().min(1).mime(["image/jpeg", "image/png", "image/jpeg"], "O comprovante deve ser um arquivo JPEG, PNG ou jpeg")
 })
 
 const defaultValues = {
     title: "",
     category: "",
     value: "",
-    receipt: ""
 }
 
 const options = [
@@ -80,10 +79,10 @@ export const NewRefund = () => {
                     />
                 </div>
 
-                <FormField 
+                <FormFieldUploadFile 
                     id="receiptField" 
                     label="COMPROVANTE"
-                    name="receipt" 
+                    name="receipt"
                 />
 
                 <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded-md mt-4">

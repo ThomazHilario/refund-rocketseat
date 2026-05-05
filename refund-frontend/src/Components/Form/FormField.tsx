@@ -15,7 +15,7 @@ export const FormField = <TFieldValues extends FieldValues>({
     name, 
     className, 
     id, 
-    label, 
+    label,
     placeholder, 
     type = "text" 
 }: FormFieldProps<TFieldValues>) => {

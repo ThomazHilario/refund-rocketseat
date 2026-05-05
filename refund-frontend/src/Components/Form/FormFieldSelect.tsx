@@ -29,7 +29,7 @@ const FormFieldSelectStyles: StylesConfig<optionsProps, false, GroupBase<options
 }
 
 export const FormFieldSelect = <TFieldValues extends FieldValues>({ className, options, id, label, name, placeholder = 'Selecione' }: FormFieldSelectProps<TFieldValues>) => {
-    const { control,  } = useFormContext<TFieldValues>()
+    const { control } = useFormContext<TFieldValues>()
 
     return ( 
         <label className={cn(className)} htmlFor={id}>
