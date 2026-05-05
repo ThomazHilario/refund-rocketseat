@@ -43,7 +43,7 @@ export const FormFieldSelect = <TFieldValues extends FieldValues>({ className, o
                    <Select 
                         styles={FormFieldSelectStyles}
                         options={options} 
-                        id={id} 
+                        inputId={id}
                         name={name} 
                         placeholder={placeholder} 
                         onBlur={onBlur}

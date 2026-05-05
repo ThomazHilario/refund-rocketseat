@@ -65,7 +65,7 @@ export const NewRefund = () => {
                 <div className="flex gap-3">
                     <FormFieldSelect 
                         className="flex-2"
-                        id="testField1" 
+                        id="selectField" 
                         label="CATEGORIA" 
                         name="category" 
                         options={options}
@@ -73,7 +73,7 @@ export const NewRefund = () => {
 
                     <FormField 
                         className="flex-1" 
-                        id="testField2" 
+                        id="valueField" 
                         label="VALOR" 
                         name="value" 
                         type="number"
@@ -81,7 +81,7 @@ export const NewRefund = () => {
                 </div>
 
                 <FormField 
-                    id="testField3" 
+                    id="receiptField" 
                     label="COMPROVANTE"
                     name="receipt" 
                 />
