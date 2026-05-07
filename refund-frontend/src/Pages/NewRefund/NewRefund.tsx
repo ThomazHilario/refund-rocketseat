@@ -1,4 +1,4 @@
-import { RefundForm } from "./Components"
+import { RefundForm, RefundRequest } from "./Components"
 import { type RefundFormTypes } from "./schema"
 
 
@@ -8,7 +8,7 @@ export const NewRefund = () => {
     }
     
     return(
-        <div className="bg-[#F9FBFA] min-h-122.5 w-lg rounded-md p-10">
+        <div className="bg-[#F9FBFA] min-h-auto w-lg rounded-md p-10">
             <RefundForm handleSubmit={handleSubmit} />
         </div>
     )

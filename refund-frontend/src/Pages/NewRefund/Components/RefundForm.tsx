@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form"
-import { Form, FormField, FormFieldSelect, FormFieldUploadFile } from "../../../Components"
+import { Button, Form, FormField, FormFieldSelect, FormFieldUploadFile } from "../../../Components"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Fragment } from "react/jsx-runtime"
 import { refundSchema, type RefundFormTypes } from "../schema"
@@ -43,9 +43,13 @@ export const RefundForm = ({ handleSubmit }: RefundFormProps) => {
 
     return (
         <Fragment>
-            <h2 className="text-xl font-semibold">
-                Nova solicitação de reembolso
-            </h2>
+            <article className="px-5 space-y-1">
+                <h2 className="text-xl font-semibold">
+                    Nova solicitação de reembolso
+                </h2>
+
+                <p className="text-xs text-gray-500">Dados da despesa para solicitar reembolso.</p>
+            </article>
 
              <Form form={form} onSubmit={handleSubmit}>
                 <FormField 
@@ -78,9 +82,9 @@ export const RefundForm = ({ handleSubmit }: RefundFormProps) => {
                     name="receipt"
                 />
 
-                <button type="submit" className="bg-button text-white px-4 py-2 rounded-md mt-4">
+                <Button type="submit" className="mt-4">
                     Criar solicitacao
-                </button>
+                </Button>
             </Form>
         </Fragment>
     )
