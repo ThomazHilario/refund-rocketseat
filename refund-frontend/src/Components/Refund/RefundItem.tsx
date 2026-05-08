@@ -1,5 +1,5 @@
 import { ForkKnifeIcon, PoliceCarIcon, BedIcon, WrenchIcon, ReceiptIcon } from "../../Components"
-import type { RefundType } from "../../Services/types"
+import type { RefundCategoryType } from "../../Services/types"
 
 const refundConfig = {
     food: { 
@@ -24,7 +24,14 @@ const refundConfig = {
     },
 } as const
 
-export const RefundItem = (refund: RefundType) => {
+type RefundItemProps = {
+    title: string;
+    category: RefundCategoryType;
+    value: number;
+    receiptId: string;
+}
+
+export const RefundItem = (refund: RefundItemProps) => {
 
     const { RefundIcon, subTitle } = refundConfig[refund.category]
 

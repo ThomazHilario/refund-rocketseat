@@ -5,6 +5,8 @@ import { useGetRefunds } from "../../Services"
 
 export const Home = () => {
     const { data } = useGetRefunds()
+    
+    const refunds = data?.refunds.data ?? []
 
     return (
         <div className="bg-[#F9FBFA] min-h-full w-full rounded-md p-10">
@@ -16,12 +18,15 @@ export const Home = () => {
                 <Search placeholder="Pesquisar pelo nome..." />
 
                 <Refund>
-                    <RefundItem 
-                        category="food" 
-                        title={'Rodrigo'} 
-                        receipt={'1234'} 
-                        value={1230} 
-                    />               
+                    {refunds.map((refund) => (
+                        <RefundItem 
+                            key={refund.id}
+                            title={refund.title} 
+                            category={refund.category}
+                            receiptId={refund.receipt.id} 
+                            value={refund.value} 
+                        />
+                    ))}            
                 </Refund>
             </section>
 

@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form"
-import { Button, Form, FormField, FormFieldSelect, FormFieldUploadFile } from "../../../Components"
+import { Button, Form, FormField, FormFieldSelect, FormFieldUploadFile, LoadingIcon } from "../../../Components"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Fragment } from "react/jsx-runtime"
 import { refundSchema, type RefundFormTypes } from "../schema"
@@ -7,7 +7,6 @@ import { refundSchema, type RefundFormTypes } from "../schema"
 
 const defaultValues = {
     title: "",
-    category: "",
     value: "",
 }
 
@@ -35,10 +34,11 @@ const options = [
 ]
 
 type RefundFormProps = {
-    handleSubmit: (data: RefundFormTypes) => void
+    handleSubmit: (data: RefundFormTypes) => void;
+    isPending?: boolean;
 }
 
-export const RefundForm = ({ handleSubmit }: RefundFormProps) => {
+export const RefundForm = ({ handleSubmit, isPending }: RefundFormProps) => {
     const form = useForm<RefundFormTypes>({ resolver: zodResolver(refundSchema), defaultValues })
 
     return (
@@ -82,8 +82,10 @@ export const RefundForm = ({ handleSubmit }: RefundFormProps) => {
                     name="receipt"
                 />
 
-                <Button type="submit" className="mt-4">
+                <Button type="submit" className="flex justify-center items-center gap-4 mt-4" disabled={isPending}>
                     Criar solicitacao
+
+                    {isPending && <LoadingIcon />}
                 </Button>
             </Form>
         </Fragment>

@@ -1,6 +1,10 @@
 import { Button } from "../../../Components"
 
-export const RefundRequest = () => {
+type RefundRequestProps = {
+    handleNewRefund: () => void
+}
+
+export const RefundRequest = ({ handleNewRefund }: RefundRequestProps) => {
     return (
         <div className="flex flex-col gap-10">
             <article>
@@ -11,7 +15,7 @@ export const RefundRequest = () => {
                 <p>Agora é apenas aguardar! Sua solicitação será analisada e, em breve, o setor financeiro irá entrar em contato com você.</p>
             </article>
 
-            <Button>Nova solicitação</Button>
+            <Button onClick={handleNewRefund}>Nova solicitação</Button>
         </div>
     )
 }

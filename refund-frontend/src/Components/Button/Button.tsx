@@ -13,7 +13,7 @@ type ButtonProps = PropsWithChildren<ButtonHTMLAttributes<HTMLButtonElement>> & 
 
 export const Button = ({ children, className, variant = "primary", ...props }: ButtonProps) => {
     return (
-        <button className={cn('px-4 py-2 rounded-md w-full text-white', variants[variant], className)} {...props}>
+        <button className={cn('px-4 py-2 rounded-md w-full cursor-pointer text-white', variants[variant], className)} {...props}>
             {children}
         </button>
     )
