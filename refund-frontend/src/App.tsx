@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { Header } from "./Components"
-import { Home, NewRefund } from "./Pages"
+import { Home, NewRefund, Refund } from "./Pages"
 
 function App() {
 
@@ -13,6 +13,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/newrefund" element={<NewRefund />} />
+            <Route path="/refund/:id" element={<Refund />} />
           </Routes>
         </main>
       </BrowserRouter>

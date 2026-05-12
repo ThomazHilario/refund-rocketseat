@@ -12,14 +12,18 @@ export type RefundType = RefundPayloadType & {
     receipt: ReceiptType;
 }
 
-export type GetParamsType = {
+export type GetRefundsParamsType = {
     page?: number;
     q?: string;
 }
 
+export type GetRefundParamType = {
+    id: string;
+}
+
 export type UploadFileType = File;
 
-export type RefundResponseType = {
+export type RefundsResponseType = {
     refunds: {
         data: RefundType[];
         meta: {
@@ -27,6 +31,10 @@ export type RefundResponseType = {
             lastPage: number;
         };
     }
+};
+
+export type RefundResponseType = {
+    refund: RefundType;
 };
 
 export type ReceiptType = {

@@ -15,6 +15,7 @@ type FormFieldSelectProps<TFieldValues extends FieldValues> = {
     label: string;
     id: string;
     name: FieldPath<TFieldValues>;
+    disabled?: boolean;
 }
 
 const FormFieldSelectStyles: StylesConfig<optionsProps, false, GroupBase<optionsProps>> | undefined = {
@@ -28,7 +29,7 @@ const FormFieldSelectStyles: StylesConfig<optionsProps, false, GroupBase<options
     }),
 }
 
-export const FormFieldSelect = <TFieldValues extends FieldValues>({ className, options, id, label, name, placeholder = 'Selecione' }: FormFieldSelectProps<TFieldValues>) => {
+export const FormFieldSelect = <TFieldValues extends FieldValues>({ className, options, id, label, name, placeholder = 'Selecione', disabled = false }: FormFieldSelectProps<TFieldValues>) => {
     const { control } = useFormContext<TFieldValues>()
 
     return ( 
@@ -48,6 +49,7 @@ export const FormFieldSelect = <TFieldValues extends FieldValues>({ className, o
                         placeholder={placeholder} 
                         onBlur={onBlur}
                         onChange={(option) => onChange(option?.value)}
+                        isDisabled={disabled}
                     />
                 )}
                 name={name}

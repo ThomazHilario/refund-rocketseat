@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { ForkKnifeIcon, PoliceCarIcon, BedIcon, WrenchIcon, ReceiptIcon } from "../../Components"
 import type { RefundCategoryType } from "../../Services/types"
 
@@ -28,10 +29,16 @@ type RefundItemProps = {
     title: string;
     category: RefundCategoryType;
     value: number;
+    id: string;
     receiptId: string;
 }
 
 export const RefundItem = (refund: RefundItemProps) => {
+    const navigate = useNavigate()
+
+    const handleNavigateToRefundDetails = () => {
+        navigate(`/refund/${refund.id}`)
+    }
 
     const { RefundIcon, subTitle } = refundConfig[refund.category]
 
@@ -41,13 +48,13 @@ export const RefundItem = (refund: RefundItemProps) => {
     })
 
     return (
-        <li className="w-full flex p-4 justify-between items-center cursor-pointer">
+        <li className="w-full flex p-4 justify-between items-center cursor-pointer" onClick={handleNavigateToRefundDetails}>
             <div className="flex items-center gap-4">
                 <RefundIcon className="text-green-700 shrink-0" />
                 
                 <section>
                     <h3 className="font-semibold line-clamp-1" title={refund.title}>{refund.title}</h3>
-                    <h4 className="font-light text-xs text-gray-400">{subTitle}</h4>
+                    <h4 className="font-light text-xs text-gray-600">{subTitle}</h4>
                 </section>
             </div>
 

@@ -31,6 +31,7 @@ export const Home = () => {
                             {refunds.map((refund) => (
                                 <RefundItem 
                                     key={refund.id}
+                                    id={refund.id}
                                     title={refund.title} 
                                     category={refund.category}
                                     receiptId={refund.receipt.id} 

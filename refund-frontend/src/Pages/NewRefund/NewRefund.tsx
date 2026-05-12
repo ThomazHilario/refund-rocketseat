@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useCreateRefund, useUploadReceiptFile } from "../../Services"
 import { RefundForm, RefundRequest } from "./Components"
-import { type RefundFormTypes } from "./schema"
+import { type RefundFormTypes } from "../schema"
 
 
 export const NewRefund = () => {
@@ -35,7 +35,7 @@ export const NewRefund = () => {
     }
     
     return(
-        <div className="bg-[#F9FBFA] min-h-auto w-lg rounded-md p-10">
+        <div className="bg-gray-500 min-h-auto w-lg rounded-md p-10">
             {!isnewRefund ? (
                 <RefundRequest handleNewRefund={handleNewRefund} />
             ) : (

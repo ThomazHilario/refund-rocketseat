@@ -1,11 +1,25 @@
 import { Axios } from "./config"
-import type { RefundPayloadType, RefundResponseType, UploadFileType, ReceiptUploadResponseType, GetParamsType } from "./types"
+import type { 
+    RefundPayloadType, 
+    RefundsResponseType, 
+    UploadFileType, 
+    ReceiptUploadResponseType, 
+    GetRefundsParamsType, 
+    GetRefundParamType, 
+    RefundResponseType 
+} from "./types"
 
-export const getRefund = async ({ page, q = "" }: GetParamsType):Promise<RefundResponseType> => {
+export const getRefunds = async ({ page, q = "" }: GetRefundsParamsType):Promise<RefundsResponseType> => {
     const response = await Axios.get("/refunds", { params: {
         page,
         q
     } })
+    
+    return response.data
+}
+
+export const getRefund = async ({ id }: GetRefundParamType):Promise<RefundResponseType> => {
+    const response = await Axios.get(`/refunds/${id}`)
     
     return response.data
 }
