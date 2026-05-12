@@ -12,6 +12,11 @@ export type RefundType = RefundPayloadType & {
     receipt: ReceiptType;
 }
 
+export type GetParamsType = {
+    page?: number;
+    q?: string;
+}
+
 export type UploadFileType = File;
 
 export type RefundResponseType = {

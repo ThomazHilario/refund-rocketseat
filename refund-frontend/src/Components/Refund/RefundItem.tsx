@@ -41,13 +41,13 @@ export const RefundItem = (refund: RefundItemProps) => {
     })
 
     return (
-        <li className="w-full flex p-4 justify-between items-center">
+        <li className="w-full flex p-4 justify-between items-center cursor-pointer">
             <div className="flex items-center gap-4">
-                <RefundIcon className="text-green-700" />
+                <RefundIcon className="text-green-700 shrink-0" />
                 
                 <section>
-                    <h3 className="font-semibold">{refund.title}</h3>
-                    <h4 className="font-light text-gray-400">{subTitle}</h4>
+                    <h3 className="font-semibold line-clamp-1" title={refund.title}>{refund.title}</h3>
+                    <h4 className="font-light text-xs text-gray-400">{subTitle}</h4>
                 </section>
             </div>
 
