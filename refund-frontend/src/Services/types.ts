@@ -22,7 +22,10 @@ export type UploadFileType = File;
 export type RefundResponseType = {
     refunds: {
         data: RefundType[];
-        meta: any;
+        meta: {
+            currentPage: number;
+            lastPage: number;
+        };
     }
 };
 

@@ -1,17 +1,18 @@
 import { useState } from "react"
-import { Pagination, Refund, RefundItem, Search } from "../../Components"
+import { LoadingIcon, Pagination, Refund, RefundItem, Search } from "../../Components"
 
 import { useGetRefunds } from "../../Services"
 
 
 export const Home = () => {
     const [search, setSearch] = useState('')
-    const { data, isLoading } = useGetRefunds({ q: search, page: 1 })
+    const [page, setPage] = useState(1)
+    const { data, isLoading } = useGetRefunds({ q: search, page })
 
     const refunds = data?.refunds.data ?? []
 
     return (
-        <div className="bg-[#F9FBFA] min-h-full w-full rounded-md p-10">
+        <div className=" min-h-full w-270.5 bg-gray-500 shadow-lg rounded-md p-10">
             <section className="flex flex-col items-center gap-5">
                 <h2 className="text-2xl font-semibold">
                     Solicitações
@@ -21,20 +22,30 @@ export const Home = () => {
                     placeholder="Pesquisar pelo nome..." 
                     onChange={(e) => setSearch(e.target.value)} 
                 />
+                
+                { isLoading && <LoadingIcon className="text-button!" /> }
 
-                <Refund totalItems={refunds.length} isLoading={isLoading}>
-                    {refunds.map((refund) => (
-                        <RefundItem 
-                            key={refund.id}
-                            title={refund.title} 
-                            category={refund.category}
-                            receiptId={refund.receipt.id} 
-                            value={refund.value} 
+                {!isLoading && refunds.length === 0 ? <p className="text-gray-500">Nenhuma solicitacao encontrada!</p> : (
+                    <section className="flex flex-col items-center justify-center w-full">
+                        <Refund>
+                            {refunds.map((refund) => (
+                                <RefundItem 
+                                    key={refund.id}
+                                    title={refund.title} 
+                                    category={refund.category}
+                                    receiptId={refund.receipt.id} 
+                                    value={refund.value} 
+                                />
+                            ))}     
+                        </Refund>
+
+                        <Pagination 
+                            currentPage={data?.refunds.meta.currentPage} 
+                            totalPages={data?.refunds.meta.lastPage} 
+                            onPageChange={setPage}
                         />
-                    ))}     
-                </Refund>
-
-                <Pagination />
+                    </section>
+                )}
             </section>
 
             <section>
