@@ -21,7 +21,7 @@ export type GetRefundParamType = {
     id: string;
 }
 
-export type UploadFileType = File;
+export type UploadFilePayloadType = File;
 
 export type RefundsResponseType = {
     refunds: {
@@ -37,6 +37,10 @@ export type RefundResponseType = {
     refund: RefundType;
 };
 
+export type RefundDeleteParamsType = {
+    id: string;
+}
+
 export type ReceiptType = {
     originalFilename: string,
     path: string,
@@ -49,4 +53,8 @@ export type ReceiptType = {
 
 export type ReceiptUploadResponseType = {
     receipt: ReceiptType
+}
+
+export type ReceiptDeleteParamsType = {
+    id: string;
 }

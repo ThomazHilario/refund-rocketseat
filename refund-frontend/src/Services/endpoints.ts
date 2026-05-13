@@ -1,13 +1,21 @@
+import axios from "axios"
 import { Axios } from "./config"
 import type { 
     RefundPayloadType, 
-    RefundsResponseType, 
-    UploadFileType, 
-    ReceiptUploadResponseType, 
     GetRefundsParamsType, 
+    RefundsResponseType, 
     GetRefundParamType, 
-    RefundResponseType 
+    RefundResponseType, 
+    RefundDeleteParamsType,
+    UploadFilePayloadType, 
+    ReceiptUploadResponseType, 
+    ReceiptDeleteParamsType
 } from "./types"
+
+export const createRefund = async (payload: RefundPayloadType) => {
+    const response = await Axios.post("/refunds", payload)
+    return response.data
+}
 
 export const getRefunds = async ({ page, q = "" }: GetRefundsParamsType):Promise<RefundsResponseType> => {
     const response = await Axios.get("/refunds", { params: {
@@ -24,16 +32,24 @@ export const getRefund = async ({ id }: GetRefundParamType):Promise<RefundRespon
     return response.data
 }
 
-export const createRefund = async (payload: RefundPayloadType) => {
-    const response = await Axios.post("/refunds", payload)
+
+export const deleteRefund = async ({ id }: RefundDeleteParamsType) => {
+    const response = await Axios.delete(`/refunds/${id}`)
+    
     return response.data
 }
 
-export const uploadFile = async (file: UploadFileType): Promise<ReceiptUploadResponseType> => {
+export const uploadFile = async (file: UploadFilePayloadType): Promise<ReceiptUploadResponseType> => {
     const formData = new FormData()
     formData.append('receiptFile', file)
 
     const response = await Axios.post<ReceiptUploadResponseType>("/receipts", formData)
+
+    return response.data
+}
+
+export const deleteFile = async ({ id }: ReceiptDeleteParamsType) => {
+    const response = await axios.delete(`/receipts/${id}`)
 
     return response.data
 }
