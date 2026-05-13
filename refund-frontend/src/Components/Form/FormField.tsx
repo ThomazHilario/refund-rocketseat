@@ -9,6 +9,7 @@ type FormFieldProps<TFieldValues extends FieldValues> = {
     name: FieldPath<TFieldValues>;
     placeholder?: string;
     type?: string;
+    disabled?: boolean;
 }
 
 export const FormField = <TFieldValues extends FieldValues>({ 
@@ -17,6 +18,7 @@ export const FormField = <TFieldValues extends FieldValues>({
     id, 
     label,
     placeholder, 
+    disabled = false,
     type = "text" 
 }: FormFieldProps<TFieldValues>) => {
     const { control } = useFormContext<TFieldValues>()
@@ -38,6 +40,7 @@ export const FormField = <TFieldValues extends FieldValues>({
                         onBlur={onBlur}
                         name={name}
                         type={type}
+                        disabled={disabled}
                     />
                 )}
                 name={name}

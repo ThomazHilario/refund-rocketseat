@@ -1,24 +1,26 @@
 import { useForm } from "react-hook-form"
 import { Fragment } from "react/jsx-runtime"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { Button, Form, FormField, FormFieldSelect } from "@/Components"
+import { Button, Form, FormField } from "@/Components"
 import type { RefundType } from "@/Services/types"
 import { refundSchema, type RefundFormTypes } from "../../schema"
-import { options } from "../../Config"
+import { useDeleteRefund } from "@/Services"
 
 type RefundFormViewProps = {
     refund: RefundType | undefined
 }
 
 export const RefundFormView = ({ refund }: RefundFormViewProps) => {
-    const form = useForm<RefundFormTypes>({ resolver: zodResolver(refundSchema), defaultValues: {
+    const form = useForm<RefundFormTypes>({ defaultValues: {
         title: refund?.title,
         category: refund?.category,
-        value: String(refund?.value)
+        value: String(refund?.value),
+        receipt: undefined,
     }})
 
+    const { mutate: deleteRefund } = useDeleteRefund()
+
     const handleSubmit = (data: RefundFormTypes) => {
-        console.log(data)
+        deleteRefund({id: refund?.id as string})
     }
 
     return (
@@ -32,30 +34,31 @@ export const RefundFormView = ({ refund }: RefundFormViewProps) => {
             </article>
 
                 <Form form={form} onSubmit={handleSubmit}>
-                <FormField 
-                    id="titleField" 
-                    label="NOME DA SOLICITAÇÃO" 
-                    name="title" 
-                />
-
-                <div className="flex gap-3">
-                    <FormFieldSelect 
-                        className="flex-2"
-                        id="selectField" 
-                        label="CATEGORIA" 
-                        name="category" 
-                        options={options}
-                        disabled
-                    />
-
                     <FormField 
-                        className="flex-1" 
-                        id="valueField" 
-                        label="VALOR" 
-                        name="value" 
-                        type="number"
+                        id="titleField" 
+                        label="NOME DA SOLICITAÇÃO" 
+                        name="title" 
+                        
                     />
-                </div>
+
+                    <div className="flex gap-3">
+                        <FormField 
+                            className="flex-2"
+                            id="selectField" 
+                            label="CATEGORIA" 
+                            name="category"
+                            
+                        />
+
+                        <FormField 
+                            className="flex-1" 
+                            id="valueField" 
+                            label="VALOR" 
+                            name="value" 
+                            type="number"
+                            
+                        />
+                    </div>
 
                 <Button type="submit" className="flex justify-center items-center gap-4 mt-4">
                     Excluir

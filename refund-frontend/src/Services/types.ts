@@ -54,7 +54,3 @@ export type ReceiptType = {
 export type ReceiptUploadResponseType = {
     receipt: ReceiptType
 }
-
-export type ReceiptDeleteParamsType = {
-    id: string;
-}
