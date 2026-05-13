@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom"
-import { useGetRefund } from "../../Services"
+import { useGetRefund } from "@/Services"
 import { RefundFormView } from "./Components/RefundForm"
 
 export const Refund = () => {

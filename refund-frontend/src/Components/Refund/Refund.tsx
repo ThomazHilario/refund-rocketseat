@@ -12,7 +12,7 @@ export const Refund = ({
 }: RefundProps) => {
 
     return (
-        <ul className={cn("flex flex-col items-center justify-center w-full", className)}>
+        <ul className={cn("flex flex-col items-center justify-center w-full gap-4", className)}>
             {children}
         </ul>  
     )

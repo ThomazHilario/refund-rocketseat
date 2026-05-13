@@ -48,7 +48,10 @@ export const RefundItem = (refund: RefundItemProps) => {
     })
 
     return (
-        <li className="w-full flex p-4 justify-between items-center cursor-pointer" onClick={handleNavigateToRefundDetails}>
+        <li 
+            className="w-full flex p-2 justify-between items-center cursor-pointer hover:bg-gray-300 rounded-md transition-colors duration-500" 
+            onClick={handleNavigateToRefundDetails}
+        >
             <div className="flex items-center gap-4">
                 <RefundIcon className="text-green-700 shrink-0" />
                 

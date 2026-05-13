@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { LoadingIcon, Pagination, Refund, RefundItem, Search } from "../../Components"
+import { LoadingIcon, Pagination, Refund, RefundItem, Search } from "@/Components"
 
-import { useGetRefunds } from "../../Services"
+import { useGetRefunds } from "@/Services"
 
 
 export const Home = () => {
@@ -26,7 +26,7 @@ export const Home = () => {
                 { isLoading && <LoadingIcon className="text-button!" /> }
 
                 {!isLoading && refunds.length === 0 ? <p className="text-gray-500">Nenhuma solicitacao encontrada!</p> : (
-                    <section className="flex flex-col items-center justify-center w-full">
+                    <section className="flex flex-col items-center justify-center w-full gap-4">
                         <Refund>
                             {refunds.map((refund) => (
                                 <RefundItem 
