@@ -51,6 +51,7 @@ export const FormFieldUploadFile = <TFieldValues extends FieldValues>({
             <input
                 ref={inputRef}
                 type="file"
+                id={id}
                 onChange={handleUploadFile}
                 hidden
             />

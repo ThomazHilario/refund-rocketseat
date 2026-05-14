@@ -7,7 +7,7 @@ export const Refund = () => {
     const { id } = useParams()
 
     const { data, isPending } = useGetRefund({ id: id as string })
-    console.log(isPending)
+
     return (
         <div className="bg-gray-500 min-h-auto w-lg rounded-md p-10">
             {isPending ? (

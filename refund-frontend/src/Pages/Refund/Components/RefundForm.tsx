@@ -1,15 +1,19 @@
 import { useForm } from "react-hook-form"
 import { Fragment } from "react/jsx-runtime"
-import { Button, Form, FormField } from "@/Components"
+import { DialogAlertAction, DialogAlertCancel, DialogAlertContent, DialogAlertDescription, DialogAlertRoot, DialogAlertTitle, DialogAlertTrigger, Form, FormField, LoadingIcon } from "@/Components"
 import type { RefundType } from "@/Services/types"
-import { refundSchema, type RefundFormTypes } from "../../schema"
+import { type RefundFormTypes } from "../../schema"
 import { useDeleteRefund } from "@/Services"
+import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
 type RefundFormViewProps = {
     refund: RefundType | undefined
 }
 
 export const RefundFormView = ({ refund }: RefundFormViewProps) => {
+    const navigate = useNavigate()
+
     const form = useForm<RefundFormTypes>({ defaultValues: {
         title: refund?.title,
         category: refund?.category,
@@ -17,9 +21,15 @@ export const RefundFormView = ({ refund }: RefundFormViewProps) => {
         receipt: undefined,
     }})
 
-    const { mutate: deleteRefund } = useDeleteRefund()
+    const { mutate: deleteRefund, isSuccess, isPending } = useDeleteRefund()
 
-    const handleSubmit = (data: RefundFormTypes) => {
+    useEffect(() => {
+        if(isSuccess){
+            navigate("/");
+        }
+    }, [isSuccess])
+
+    const handleSubmit = () => {
         deleteRefund({id: refund?.id as string})
     }
 
@@ -33,36 +43,54 @@ export const RefundFormView = ({ refund }: RefundFormViewProps) => {
                 <p className="text-xs text-gray-600">Dados da despesa para solicitar reembolso.</p>
             </article>
 
-                <Form form={form} onSubmit={handleSubmit}>
+            <Form form={form} onSubmit={handleSubmit}>
+                <FormField 
+                    id="titleField" 
+                    label="NOME DA SOLICITAÇÃO" 
+                    name="title" 
+                    disabled
+                />
+
+                <div className="flex gap-3">
                     <FormField 
-                        id="titleField" 
-                        label="NOME DA SOLICITAÇÃO" 
-                        name="title" 
-                        
+                        className="flex-2"
+                        id="selectField" 
+                        label="CATEGORIA" 
+                        name="category"
+                        disabled
                     />
 
-                    <div className="flex gap-3">
-                        <FormField 
-                            className="flex-2"
-                            id="selectField" 
-                            label="CATEGORIA" 
-                            name="category"
-                            
-                        />
+                    <FormField 
+                        className="flex-1" 
+                        id="valueField" 
+                        label="VALOR" 
+                        name="value" 
+                        type="number"
+                        disabled
+                    />
+                </div>
 
-                        <FormField 
-                            className="flex-1" 
-                            id="valueField" 
-                            label="VALOR" 
-                            name="value" 
-                            type="number"
-                            
-                        />
-                    </div>
+                <DialogAlertRoot>
+                    <DialogAlertTrigger 
+                        className="flex justify-center items-center gap-4 mt-4 bg-green-100 p-2 rounded-sm text-white"
+                        disabled={isPending}
+                    >
+                        {isPending ? <LoadingIcon /> : 'Excluir'}
+                    </DialogAlertTrigger>
 
-                <Button type="submit" className="flex justify-center items-center gap-4 mt-4">
-                    Excluir
-                </Button>
+                    <DialogAlertContent>
+                        <DialogAlertTitle>Excluir solicitação</DialogAlertTitle>
+
+                        <DialogAlertDescription>Tem certeza que deseja excluir essa solicitação? Essa ação é irreversível.</DialogAlertDescription>
+
+                        <div className="flex justify-end gap-4 items-center">
+                            <DialogAlertCancel>Cancelar</DialogAlertCancel>
+                            <DialogAlertAction type="submit" onClick={handleSubmit}>
+                                Excluir
+                            </DialogAlertAction>
+                        </div>
+                    </DialogAlertContent>
+                </DialogAlertRoot>
             </Form>
         </Fragment>
     )
