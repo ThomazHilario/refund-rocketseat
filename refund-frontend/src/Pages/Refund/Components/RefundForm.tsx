@@ -30,7 +30,7 @@ export const RefundFormView = ({ refund }: RefundFormViewProps) => {
                     Nova solicitação de reembolso
                 </h2>
 
-                <p className="text-xs text-gray-500">Dados da despesa para solicitar reembolso.</p>
+                <p className="text-xs text-gray-600">Dados da despesa para solicitar reembolso.</p>
             </article>
 
                 <Form form={form} onSubmit={handleSubmit}>

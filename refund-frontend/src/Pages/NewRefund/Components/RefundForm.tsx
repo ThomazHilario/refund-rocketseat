@@ -26,7 +26,7 @@ export const RefundForm = ({ handleSubmit, isPending }: RefundFormProps) => {
                     Nova solicitação de reembolso
                 </h2>
 
-                <p className="text-xs text-gray-500">Dados da despesa para solicitar reembolso.</p>
+                <p className="text-xs text-gray-600">Dados da despesa para solicitar reembolso.</p>
             </article>
 
              <Form form={form} onSubmit={handleSubmit}>
@@ -61,9 +61,7 @@ export const RefundForm = ({ handleSubmit, isPending }: RefundFormProps) => {
                 />
 
                 <Button type="submit" className="flex justify-center items-center gap-4 mt-4" disabled={isPending}>
-                    Criar solicitacao
-
-                    {isPending && <LoadingIcon />}
+                    {isPending ? <LoadingIcon /> : 'Criar solicitacao'}
                 </Button>
             </Form>
         </Fragment>

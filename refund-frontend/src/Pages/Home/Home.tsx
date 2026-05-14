@@ -25,7 +25,7 @@ export const Home = () => {
                 
                 { isLoading && <LoadingIcon className="text-button!" /> }
 
-                {!isLoading && refunds.length === 0 ? <p className="text-gray-500">Nenhuma solicitacao encontrada!</p> : (
+                {!isLoading && refunds.length === 0 ? <p className="text-gray-200">Nenhuma solicitacao encontrada!</p> : (
                     <section className="flex flex-col items-center justify-center w-full gap-4">
                         <Refund>
                             {refunds.map((refund) => (
