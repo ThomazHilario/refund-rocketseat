@@ -65,7 +65,7 @@ export const FormFieldUploadFile = <TFieldValues extends FieldValues>({
                     <span className={cn('w-full rounded-md border-2 border-gray-300 p-2.5 pointer-events-none')}>{field.value?.name ?? placeholder}</span>
 
                     <div className="flex justify-between items-center gap-4">
-                        <button type="button" onClick={handleOpenFile} className="bg-button w-16 h-12 rounded-md flex items-center justify-center cursor-pointer">
+                        <button type="button" onClick={handleOpenFile} className="bg-green-100 w-16 h-12 rounded-md flex items-center justify-center cursor-pointer">
                             <UploadIcon className="text-white pointer-events-none"/>
                         </button>
                     </div>
