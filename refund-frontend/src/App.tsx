@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { Header } from "./Components"
+import { Header, MainLayout } from "./Components"
 import { Home, NewRefund, Refund } from "./Pages"
 
 function App() {
@@ -9,13 +9,13 @@ function App() {
       <BrowserRouter>
         <Header />
 
-        <main className="flex items-center justify-center my-auto mx-auto p-5">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/newrefund" element={<NewRefund />} />
-            <Route path="/refund/:id" element={<Refund />} />
+            <Route path="/" element={<MainLayout />}>
+              <Route index element={<Home />} />
+              <Route path="/newrefund" element={<NewRefund />} />
+              <Route path="/refund/:id" element={<Refund />} />
+            </Route>
           </Routes>
-        </main>
       </BrowserRouter>
     </div>
   )
