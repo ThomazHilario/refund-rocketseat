@@ -2,7 +2,7 @@ import type { ButtonHTMLAttributes, PropsWithChildren, ReactNode } from "react";
 import { cn } from "../../utils"
 
 const variants = {
-    primary: "bg-button",
+    primary: "bg-green-100",
 } as const
 
 

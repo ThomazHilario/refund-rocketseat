@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Fragment } from "react/jsx-runtime"
 import { refundSchema, type RefundFormTypes } from "../../schema"
 import { options } from "../../Config"
+import { cn } from "@/utils"
 
 
 const defaultValues = {
@@ -60,7 +61,14 @@ export const RefundForm = ({ handleSubmit, isPending }: RefundFormProps) => {
                     name="receipt"
                 />
 
-                <Button type="submit" className="flex justify-center items-center gap-4 mt-4" disabled={isPending}>
+                <Button 
+                    type="submit" 
+                    className={cn(
+                        "flex justify-center items-center gap-4 mt-4", 
+                        isPending && 'pointer-events-none'
+                    )} 
+                    disabled={isPending}
+                >
                     {isPending ? <LoadingIcon /> : 'Criar solicitacao'}
                 </Button>
             </Form>

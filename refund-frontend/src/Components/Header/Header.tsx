@@ -15,7 +15,7 @@ export const Header = () => {
 
             <nav className='flex gap-4 items-center'>
                 <Link className={cn(isSolicitationsList ? "text-button" : "")} to="/">Solicitações de reembolso</Link>
-                <Link className='flex items-center p-5 min-w-38.75 h-12 bg-button rounded-md text-white' to="/newrefund">Nova solicitação</Link>     
+                <Link className='flex items-center p-5 min-w-38.75 h-12 bg-green-100 rounded-md text-white' to="/newrefund">Nova solicitação</Link>     
             </nav>
         </header>
     )
