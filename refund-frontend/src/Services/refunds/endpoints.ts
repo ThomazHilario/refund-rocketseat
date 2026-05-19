@@ -1,4 +1,4 @@
-import { Axios } from "./config"
+import { Axios } from "../config"
 import type { 
     RefundPayloadType, 
     GetRefundsParamsType, 

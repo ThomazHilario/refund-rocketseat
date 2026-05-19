@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { ForkKnifeIcon, PoliceCarIcon, BedIcon, WrenchIcon, ReceiptIcon } from "../../Components"
-import type { RefundCategoryType } from "../../Services/types"
+import type { RefundCategoryType } from "../../Services/refunds/types"
 
 const refundConfig = {
     food: { 

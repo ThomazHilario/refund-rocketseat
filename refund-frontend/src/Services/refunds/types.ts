@@ -1,3 +1,5 @@
+import type { ReceiptType } from "../receipts";
+
 export type RefundCategoryType = 'food' | 'hosting' | 'transport' | 'services' | 'other';
 
 export type RefundPayloadType = {
@@ -21,8 +23,6 @@ export type GetRefundParamType = {
     id: string;
 }
 
-export type UploadFilePayloadType = File;
-
 export type RefundsResponseType = {
     refunds: {
         data: RefundType[];
@@ -39,18 +39,4 @@ export type RefundResponseType = {
 
 export type RefundDeleteParamsType = {
     id: string;
-}
-
-export type ReceiptType = {
-    originalFilename: string,
-    path: string,
-    extname: string,
-    filename: string,
-    id: string,
-    createdAt: string,
-    updatedAt: string
-}
-
-export type ReceiptUploadResponseType = {
-    receipt: ReceiptType
 }

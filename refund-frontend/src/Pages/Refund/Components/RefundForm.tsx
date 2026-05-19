@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form"
 import { Fragment } from "react/jsx-runtime"
 import { DialogAlertAction, DialogAlertCancel, DialogAlertContent, DialogAlertDescription, DialogAlertRoot, DialogAlertTitle, DialogAlertTrigger, Form, FormField, LoadingIcon } from "@/Components"
-import type { RefundType } from "@/Services/types"
+import type { RefundType } from "@/Services/refunds/types"
 import { type RefundFormTypes } from "../../schema"
 import { useDeleteRefund } from "@/Services"
 import { useEffect } from "react"
