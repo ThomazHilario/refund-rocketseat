@@ -10,7 +10,7 @@ function App() {
         <Header />
 
           <Routes>
-            <Route path="/" element={<MainLayout />}>
+            <Route element={<MainLayout />}>
               <Route index element={<Home />} />
               <Route path="/newrefund" element={<NewRefund />} />
               <Route path="/refund/:id" element={<Refund />} />

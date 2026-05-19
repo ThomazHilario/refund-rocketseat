@@ -23,7 +23,7 @@ export const Home = () => {
                     onChange={(e) => setSearch(e.target.value)} 
                 />
                 
-                { isLoading && <LoadingIcon className="text-button!" /> }
+                { isLoading && <LoadingIcon className="text-green-100!" /> }
 
                 {!isLoading && refunds.length === 0 ? <p className="text-gray-200">Nenhuma solicitacao encontrada!</p> : (
                     <section className="flex flex-col items-center justify-center w-full gap-4">
