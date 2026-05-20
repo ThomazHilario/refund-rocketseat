@@ -1,0 +1,6 @@
+export * from './DialogRoot'
+export * from './DialogTrigger'
+export * from './DialogContent'
+export * from './DialogTitle'
+export * from './DialogDescription'
+export * from './DialogClose'

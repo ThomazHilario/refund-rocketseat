@@ -6,8 +6,6 @@ import type {
     GetRefundParamType, 
     RefundResponseType, 
     RefundDeleteParamsType,
-    UploadFilePayloadType, 
-    ReceiptUploadResponseType,
 } from "./types"
 
 export const createRefund = async (payload: RefundPayloadType) => {
@@ -34,14 +32,5 @@ export const getRefund = async ({ id }: GetRefundParamType):Promise<RefundRespon
 export const deleteRefund = async ({ id }: RefundDeleteParamsType) => {
     const response = await Axios.delete(`/refunds/${id}`)
     
-    return response.data
-}
-
-export const uploadFile = async (file: UploadFilePayloadType): Promise<ReceiptUploadResponseType> => {
-    const formData = new FormData()
-    formData.append('receiptFile', file)
-
-    const response = await Axios.post<ReceiptUploadResponseType>("/receipts", formData)
-
     return response.data
 }

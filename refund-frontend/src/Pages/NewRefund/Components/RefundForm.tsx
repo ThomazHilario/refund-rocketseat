@@ -63,6 +63,7 @@ export const RefundForm = ({ handleSubmit, isPending }: RefundFormProps) => {
 
                 <Button 
                     type="submit" 
+                    variant="primary"
                     className={cn(
                         "flex justify-center items-center gap-4 mt-4", 
                         isPending && 'pointer-events-none'

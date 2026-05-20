@@ -9,7 +9,7 @@ export type RefundPayloadType = {
     receipt: string;
 }
 
-export type RefundType = RefundPayloadType & {
+export type RefundType = Pick<RefundPayloadType, 'title' | 'category' | 'value'> & {
     id: string;
     receipt: ReceiptType;
 }

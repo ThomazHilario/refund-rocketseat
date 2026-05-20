@@ -1,11 +1,23 @@
 import { useForm } from "react-hook-form"
 import { Fragment } from "react/jsx-runtime"
-import { DialogAlertAction, DialogAlertCancel, DialogAlertContent, DialogAlertDescription, DialogAlertRoot, DialogAlertTitle, DialogAlertTrigger, Form, FormField, LoadingIcon } from "@/Components"
+import { 
+    DialogAlertAction, 
+    DialogAlertCancel, 
+    DialogAlertContent, 
+    DialogAlertDescription, 
+    DialogAlertRoot, 
+    DialogAlertTitle, 
+    DialogAlertTrigger, 
+    Form, 
+    FormField, 
+    LoadingIcon 
+} from "@/Components"
 import type { RefundType } from "@/Services/refunds/types"
 import { type RefundFormTypes } from "../../schema"
-import { useDeleteRefund } from "@/Services"
+import { useDeleteRefund, useGetReceiptFile } from "@/Services"
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import { ViewReceipt } from "./ViewReceipt"
 
 type RefundFormViewProps = {
     refund: RefundType | undefined
@@ -21,6 +33,7 @@ export const RefundFormView = ({ refund }: RefundFormViewProps) => {
         receipt: undefined,
     }})
 
+    const { mutate: getReceiptFile, data, isPending: isPedingReceipt } = useGetReceiptFile()
     const { mutate: deleteRefund, isSuccess, isPending } = useDeleteRefund()
 
     useEffect(() => {
@@ -69,6 +82,12 @@ export const RefundFormView = ({ refund }: RefundFormViewProps) => {
                         disabled
                     />
                 </div>
+
+                <ViewReceipt 
+                    handleReceiptUrl={() => getReceiptFile({ id: refund?.receipt.id! })} 
+                    url={data?.url}
+                    isPending={isPedingReceipt} 
+                />
 
                 <DialogAlertRoot>
                     <DialogAlertTrigger 
