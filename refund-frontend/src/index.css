@@ -1,6 +1,0 @@
-@import "tailwindcss";
-
-@theme {
-    --color-button: #1F8459;
-    --font-primary: "Open Sans", sans-serif;
-}
