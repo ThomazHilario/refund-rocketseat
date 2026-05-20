@@ -14,7 +14,7 @@ export const Header = () => {
             <img src={Logo} alt="Logo" />
 
             <nav className='flex gap-4 items-center'>
-                <Link className={cn(isSolicitationsList ? "text-button" : "")} to="/">Solicitações de reembolso</Link>
+                <Link className={cn(isSolicitationsList ? "text-green-100" : "")} to="/">Solicitações de reembolso</Link>
                 <Link className='flex items-center p-5 min-w-38.75 h-12 bg-green-100 rounded-md text-white' to="/newrefund">Nova solicitação</Link>     
             </nav>
         </header>
