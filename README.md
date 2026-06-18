@@ -1,73 +1,82 @@
-# React + TypeScript + Vite
+# 💸 Refund — Solicitação de Reembolso
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação web desenvolvida durante a **Formação Fullstack da [Rocketseat](https://rocketseat.com.br/)**, com foco na prática de React.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 📋 Sobre o Projeto
 
-## React Compiler
+O **Refund** é uma interface de solicitação de reembolso de despesas. O usuário preenche um formulário com os dados da despesa (nome, categoria e valor), e as solicitações são listadas em um painel lateral com o total acumulado.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## ✨ Funcionalidades
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Formulário para cadastro de despesas com nome, categoria, valor e imagem do comprovante
+- Categorias disponíveis: Alimentação, Hospedagem, Serviços, Transporte e Outros
+- Listagem de despesas adicionadas na página de home
+- Opção de remover uma despesa da lista
+- Layout responsivo e semântico
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🛠️ Tecnologias Utilizadas
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- **React** — Construção da interface
+- **Radix-Ui** — Interfaces como modal e alert dialog criados com radix
+- **Google Fonts** — tipografia com a fonte *Open Sans*
+
+---
+
+## 🚀 Como Executar
+
+Este projeto depende de uma API backend para funcionar. Siga os passos abaixo para configurar os dois repositórios.
+
+### 1. Clone o repositorio na sua máquina
+
+Clone o repositório da API:
+
+```bash
+git clone url do repo
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Instale as dependências:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+### 2. No MonoRepo faça a migrate do banco de dados:
+
+Em outro terminal, entre em apps > refund-api:
+
+```
+node ace migration: run
+```
+
+### 3. Configure as variáveis de ambiente na aplicação web em apps:
+
+Abra ou crie o no front `.env` e defina a variável conforme o exemplo do `.env.example`:
+
+```env
+VITE_API_URL=http://localhost:3333
+```
+
+### 4. Execute o projeto a partir da raiz usando o npm run dev 
+
+O Front estará disponível na porta 5173 e o back na porta 3333
+
+---
+
+
+## 👨‍💻 Autor
+
+Feito por **Thomaz Hilário**
+
+[![GitHub](https://img.shields.io/badge/GitHub-ThomazHilario-181717?style=flat&logo=github)](https://github.com/ThomazHilario)
+
+---
+
+## 📄 Licença
+
+Este projeto foi desenvolvido para fins educacionais durante a formação da Rocketseat. Sinta-se livre para usá-lo como referência de estudo.
