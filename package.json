@@ -19,5 +19,9 @@
   "packageManager": "npm@11.17.0",
   "workspaces": [
     "apps/*"
-  ]
+  ],
+  "allowScripts": {
+    "@swc/core@1.11.24": true,
+    "better-sqlite3@12.11.1": true
+  }
 }
