@@ -51,15 +51,27 @@ npm install
 Em outro terminal, entre em apps > refund-api:
 
 ```
-node ace migration: run
+node ace migration:run
 ```
 
-### 3. Configure as variáveis de ambiente na aplicação web em apps:
+### 3. Configure as variáveis de ambiente na aplicação web e apps em apps:
 
 Abra ou crie o no front `.env` e defina a variável conforme o exemplo do `.env.example`:
 
 ```env
 VITE_API_URL=http://localhost:3333
+```
+
+Abra ou crie o no back `.env` e defina a variável conforme o exemplo do `.env.example`:
+
+```env
+TZ=UTC
+PORT=3333
+HOST=localhost
+LOG_LEVEL=info
+APP_KEY=jCP6WY0zvQB_eKHTHvLtI1CKn5IuBNan
+NODE_ENV=development
+DRIVE_DISK=fs
 ```
 
 ### 4. Execute o projeto a partir da raiz usando o npm run dev 
