@@ -54,15 +54,15 @@ Em outro terminal, entre em apps > refund-api:
 node ace migration:run
 ```
 
-### 3. Configure as variáveis de ambiente na aplicação web e apps em apps:
+### 3. Configure as variáveis de ambiente na aplicação em apps > web e apps > refund-api:
 
-Abra ou crie o no front `.env` e defina a variável conforme o exemplo do `.env.example`:
+Abra ou crie o no front(apps > web) `.env` e defina a variável conforme o exemplo do `.env.example`:
 
 ```env
 VITE_API_URL=http://localhost:3333
 ```
 
-Abra ou crie o no back `.env` e defina a variável conforme o exemplo do `.env.example`:
+Abra ou crie o no back(apps > refund-api) `.env` e defina a variável conforme o exemplo do `.env.example`:
 
 ```env
 TZ=UTC
