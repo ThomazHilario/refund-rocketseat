@@ -2,12 +2,15 @@ import { useState } from "react"
 import { LoadingIcon, Pagination, Refund, RefundItem, Search } from "@/Components"
 
 import { useGetRefunds } from "@/Services"
+import { useDebounce } from "@/utils"
 
 
 export const Home = () => {
     const [search, setSearch] = useState('')
+    const debouncedSearch =  useDebounce(search, 500)
+
     const [page, setPage] = useState(1)
-    const { data, isLoading } = useGetRefunds({ q: search, page })
+    const { data, isLoading } = useGetRefunds({ q: debouncedSearch, page })
 
     const refunds = data?.refunds.data ?? []
 

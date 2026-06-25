@@ -1,1 +1,0 @@
-export const cn = (...classes: any[]) => classes.filter(value => typeof value === 'string').join(' ')
