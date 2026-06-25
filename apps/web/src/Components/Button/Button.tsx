@@ -1,20 +1,25 @@
-import type { ButtonHTMLAttributes, PropsWithChildren, ReactNode } from "react";
-import { cn } from "../../utils"
+import type { ComponentProps, PropsWithChildren } from "react";
+import { tv, type VariantProps } from "tailwind-variants";
 
-const variants = {
-    default: "bg-transparent text-green-100!",
-    primary: "bg-green-100",
-} as const
+export const ButtonVariants = tv({
+    base: 'px-4 py-2 rounded-md w-full cursor-pointer text-white',
+    variants: {
+        variant: {
+            default: 'bg-transparent text-green-100',
+            primary: "bg-green-100",
+        },
+    },
+    defaultVariants: {
+        variant: 'default'
+    }
+})
 
 
-type ButtonProps = PropsWithChildren<ButtonHTMLAttributes<HTMLButtonElement>> & {
-    variant?: keyof typeof variants;
-    children: ReactNode;
-}
+type ButtonProps = PropsWithChildren<ComponentProps<'button'>> & VariantProps<typeof ButtonVariants> & {}
 
-export const Button = ({ children, className, variant = "default", ...props }: ButtonProps) => {
+export const Button = ({ children, className, variant = 'default', ...props }: ButtonProps) => {
     return (
-        <button className={cn('px-4 py-2 rounded-md w-full cursor-pointer text-white', variants[variant], className)} {...props}>
+        <button className={ButtonVariants({ className: className, variant })} {...props}>
             {children}
         </button>
     )

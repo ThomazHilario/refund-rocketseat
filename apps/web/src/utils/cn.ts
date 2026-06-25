@@ -1,1 +1,3 @@
-export const cn = (...classes: any[]) => classes.filter(value => typeof value === 'string').join(' ')
+import * as TailwindVariants from 'tailwind-variants'
+
+export const cn = TailwindVariants.cn
